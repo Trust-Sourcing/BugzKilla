@@ -245,4 +245,5 @@ ModelManifest.xml
 .fake/
 /Bugzkilla/UploadedFiles
 /Bugzkilla/TransformWebConfig
+/Bugzkilla/Web.config
 /Bugzkilla/Properties/PublishProfiles

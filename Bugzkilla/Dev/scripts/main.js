@@ -89,6 +89,7 @@
             btnAddScreenshot: '.js-addScrn',
 
             isNewTicket: false,
+            isScrnAdd: false,
 
             assemblaSpaces: "https://www.assembla.com/spaces/",
             bugCounter: 1,
@@ -410,7 +411,7 @@
                 $(self.btnAddScreenshot).click(function () {
                     helpers.removeDivForTool();
                     helpers.createDivForTool();
-
+                    self.isScrnAdd = true;
                     $(tool.sideBarToolDetect).addClass('active');
                     self.closeModalOrPopup();
                 });
@@ -543,7 +544,9 @@
                     $(self.sideBarToolDetect).removeClass('active');
                     $('body').css('cursor', 'default');
                     self.activateSlider();
-                    assemblaController.openPopup();
+
+                    assemblaController.isScrnAdd ? assemblaController.openModal() : assemblaController.openPopup();
+                    assemblaController.isScrnAdd = false;
                 });
             },
 
