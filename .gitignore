@@ -247,3 +247,4 @@ ModelManifest.xml
 /Bugzkilla/TransformWebConfig
 /Bugzkilla/Web.config
 /Bugzkilla/Properties/PublishProfiles
+/Bugzkilla/Connection.config
