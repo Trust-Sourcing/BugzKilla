@@ -1,0 +1,162 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <base href="/">
+    <script src="/js/styles.js"></script>
+</head>
+<body style="background-color: transparent; overflow: hidden;">
+
+    <img id="myImgBack" />
+    <div id="openModal" class="modalDialog">
+        <div class="modal-body">
+            <div class="left-pnl"></div>
+            <div class="row panel js-new-or-add"></div>
+            <div class="row">
+                <p class="js-desc-title">Description</p>
+                <textarea type="text" class="inputs__txt-box inputs__txt-box--desc js-description"></textarea>
+            </div>
+            <div class="row slider-block">
+                <p class="scrn-title">Screenshots</p>
+                <button class="btn btn-group-sm btnAddScrn js-addScrn">Add screenshots</button>
+                <div class="slideFrame js-slideFrame">
+                    <div class="scrnSlider js-scrnAttach"></div>
+                </div>
+                <div class="btn-slider prev"></div>
+                <div class="btn-slider next"></div>
+            </div>
+            <div class="row">
+                <div class="row__col">
+                    <label>Assign to</label>
+                    <select class="inputs js-listOfUsers" disabled="disabled">
+                        <option value="" disabled selected hidden>Here will be users</option>
+                    </select>
+                </div>
+                <div class="row__col">
+                    <label>Status</label>
+                    <select class="inputs js-listOfStatuses" disabled="disabled">
+                        <option value="" disabled selected hidden>Here will be statuses</option>
+                    </select>
+                </div>
+                <div class="row__col">
+                    <label>Tags</label>
+                    <div class="multi-select js-multi-select inputs">
+                        <div class="multi-select__select js-select">
+                            <span class="multi-select__label js-label">Here will be tags</span>
+                        </div>
+                        <div class="multi-select__down">
+                            <div class="multi-select__btn-holder">
+                                <div class="sw-inp">
+                                    <input type="checkbox" autocomplete="off" id="multi-select-all" class="js-select-all">
+                                    <label for="multi-select-all"><span class="ico-box"></span>Select All</label>
+                                </div>
+                            </div>
+                            <ul class="multi-select__list js-tags"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row__col">
+                    <label>Priority</label>
+                    <select class="inputs js-priority">
+                        <option value="1">1 Highest</option>
+                        <option value="2">2 High</option>
+                        <option value="3" selected>3 Normal</option>
+                        <option value="4">4 Low</option>
+                        <option value="5">5 Lowest</option>
+                    </select>
+                </div>
+                <div class="row__col">
+                    <label>Milestone</label>
+                    <select class="inputs js-milestones" disabled="disabled">
+                        <option value="" disabled selected hidden>Here will be milestones</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="modal-footer">
+                    <input type="submit" class="btn-send js-createTicket" value="Send Bug" />
+                    <button class="btn-cancel js-closeModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="openPopup" class="popupDialog">
+        <div class="popup-body">
+            <div class="ico-close js-closePopup"></div>
+            <div class="row__popup">
+                <span>Choose space first</span>
+            </div>
+            <div class="row__popup">
+                <div class="row__box centered">
+                    <select class="inputs js-selectSpace" required disabled="disabled">
+                        <option value="" disabled selected hidden>Select space first</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row__popup">
+                <div class="row__btn-block js-modal-btn">
+                    <button class="btn-add js-new-ticket" disabled="disabled">New ticket</button>
+                    <button class="btn-add js-add-to-ticket" disabled="disabled">Add to ticket</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <figure class="bgk-figure">
+        <img class="bgk-img" id="MyImagination" style="display: none" src="">
+    </figure>
+
+    <canvas id="myCanvas" style="display: none;"></canvas>
+
+    <div id="loaderBugzkilla" style="display: none"></div>
+
+    <div class="side-bar-detect active">
+        <div class="detect-button">
+            <span>
+                Detect Bugz
+            </span>
+        </div>
+    </div>
+
+    <div class="side-bar-toolsdetect">
+
+        <div class="toolbox-wrap ico-back-btn"></div>
+
+        <div class="toolbox-wrap ico-rect turnRedRectangle"></div>
+
+        <div class="toolbox-wrap ico-freeline freeLine"></div>
+
+        <div class="toolbox-wrap ico-arrow turnArrow"></div>
+
+        <div class="toolbox-wrap ico-text turnTextInRedRectangle"></div>
+
+        <div class="toolbox-wrap ico-color">
+            <input type="color" class="pickColor" />
+        </div>
+
+        <div class="toolbox-wrap ico-width thicknessTool">
+            <div class="widthSelector">
+                <span data-icon="&#xe900;" value="1px"></span>
+                <span data-icon="&#xe901;" value="2px"></span>
+                <span data-icon="&#xe902;" value="3px"></span>
+                <span data-icon="&#xe903;" value="4px"></span>
+                <span data-icon="&#xe904;" value="5px"></span>
+                <span data-icon="&#xe905;" value="6px"></span>
+                <span data-icon="&#xe906;" value="7px"></span>
+            </div>
+        </div>
+        <div class="toolbox-wrap ico-send js-proceed">
+            <span>Proceed</span>
+        </div>
+    </div>
+
+    <script src="/js/main_ext.js"></script>
+</body>
+</html>

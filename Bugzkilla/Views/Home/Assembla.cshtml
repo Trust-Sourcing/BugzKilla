@@ -1,0 +1,19 @@
+﻿@using Bugzkilla.Helpers
+
+@{
+    ViewBag.Title = "Bugzkilla - Assembla";
+}
+
+<h2>Assembla Login</h2>
+<form action="https://api.assembla.com/authorization" method="get" class="form-horizontal">
+    <input type="hidden" name="client_id" value="@ConfigurationSettingsAccessor.AssemblaApplicationIdentifier">
+    <input type="hidden" name="response_type" value="code">
+    <input type="submit" value="Login using assembla" class="btn btn-default">
+</form>
+
+@if (Model)
+{
+    <h3>You have successfully logged in Assembla!</h3>
+    <h4>Now you can use tool.</h4>
+}
+

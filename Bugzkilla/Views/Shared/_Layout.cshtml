@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bugzkilla</title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,300,900' rel='stylesheet' type='text/css'>
+    <link href="/Dist/styles/style.css" rel="stylesheet"/>
+    <script src="/Dist/scripts/fouc.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Bugzkilla", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Assembla", "Assembla", "Home")</li>
+                        <li>@Html.ActionLink("Tool", "Tool", "Home")</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <div class="footercstm-wrap">
+            <div class="container">
+                <br><br>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>
+                            <strong>Product</strong>
+                            <br>
+                            Privacy Policy
+                            <br>
+                            Terms of Use
+                            <br>
+                            Support
+                        </p>
+                    </div><!-- /col-md-4 -->
+
+                    <div class="col-md-6">
+                        <div class="row">
+
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <p>
+                                    <strong>About </strong>
+                                    <br>
+                                    About us
+                                    <br>
+                                    Testimonials
+                                    <br>
+                                    Press Contact
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+                    </div><!-- /col-md-4 -->
+                    <div class="col-md-3">
+                        <p>
+                            <strong>Contact us </strong>
+                            <br>
+                            +1 949 287 88 00
+                            <br>
+                            3848 Campus Dr., Suite 201<br>
+                            Newport Beach, CA 92660
+                        </p>
+                    </div><!-- /col-md-4 -->
+                    <!-- FOOTER -->
+
+                </div>
+            </div><!-- /.container -->
+        </div>
+    </footer>
+    <div class="footerbtm-wrap">
+        <div class="container">
+            <br>
+            <div class="row">
+
+                <div class="col-md-3">
+                    <p>© @DateTime.Now.Year BugzKilla. All rights reserved. </p>
+                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-3">
+                    <span>Developed by &nbsp;&nbsp;</span>
+                    <img alt="T.S." src="~/Images/ts-ftr-logo.png" height="19" width="17">
+                    <span><strong>Trust Sourcing</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.routeController = {
+        partName: 'layout'
+    }
+</script>
+@RenderSection("scripts", required: false)
+
+<script src="/Dist/scripts/main.js"></script>
+</body>
+</html>

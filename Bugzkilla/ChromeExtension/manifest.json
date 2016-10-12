@@ -1,0 +1,30 @@
+{
+  "name": "Bugzkilla",
+  "description": "Hit make screenshot to start work with bugzkilla",
+  "version": "0.2",
+  "manifest_version": 2,
+  "minimum_chrome_version": "34",
+  "browser_action": {
+
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "16x16.png",
+    "48": "32x32.png",
+    "128": "32x32.png"
+  },
+  "permissions": [
+    "cookies",    
+    "activeTab",
+    "background",
+    "tabs",
+    "notifications",
+    "http://*/",
+    "https://*/",
+    "<all_urls>"
+  ],
+  "background": {
+        "page": "background.html"
+  }
+
+}

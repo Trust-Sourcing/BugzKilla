@@ -1,0 +1,863 @@
+﻿@import 'vendor/jquery-ui';
+@import 'vendor/multiselect.scss';
+@import 'assets/ui';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+/*constants*/
+$cGreenTool: #2dcc70;
+$cRed: #dd5749;
+$cLightGray: #f5f5f5;
+$cGrayBlue: #495666;
+$cWhiteGray: #e6e6e6;
+$cAmethyst: #9b59b6;
+$cInputsColor: #f4f4f4;
+$fOpenSans: 'Open Sans';
+
+@font-face {
+    font-family: 'bgkicons';
+    src: url('/fonts/bugzkilla.eot');
+    src: url('/fonts/bugzkilla.woff') format('woff'), url('/fonts/bugzkilla.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bgkiconsthick';
+    src: url('/fonts/bugzkilla2.eot');
+    src: url('/fonts/bugzkilla2.woff') format('woff'), url('/fonts/bugzkilla2.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon-send-btn-ico {
+    font-family: 'bgkicons' !important;
+    speak: none;
+    line-height: 1;
+    font-size: 30px;
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    color: #45ca58;
+
+    &:before {
+        content: "\e907";
+    }
+}
+
+.side-bar-toolsdetect {
+    width: 400px;
+    height: 40px;
+    position: fixed;
+    right: -400px;
+    bottom: 25px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: #ffffff;
+    z-index: 999999;
+    box-sizing: content-box;
+    display: inline-block;
+
+    &.active {
+        transition: right 0.2s ease-in;
+        right: 0;
+
+        .toolbox-wrap {
+            box-sizing: content-box;
+            cursor: pointer;
+            width: 40px;
+            height: 38px;
+            float: left;
+            position: relative;
+            border: 1px solid $cGreenTool;
+            border-left: none;
+            color: #45ca58;
+            font-family: 'bgkicons';
+            font-size: 40px;
+            line-height: 40px;
+            text-decoration: none;
+            float: left;
+
+            &:hover {
+                color: white;
+                background-color: $cGreenTool;
+            }
+
+            &.ico-back-btn {
+                border-top-left-radius: 20px;
+                border-bottom-left-radius: 20px;
+                border-left: 1px solid $cGreenTool;
+
+                &:before {
+                    content: "\e903";
+                    position: absolute;
+                    left: 2px;
+                }
+            }
+
+            &.ico-rect {
+                &:before {
+                    content: "\e902";
+                }
+            }
+
+            &.ico-freeline {
+                &:before {
+                    content: "\e906";
+                }
+            }
+
+            &.ico-arrow {
+                &:before {
+                    content: "\e901";
+                }
+            }
+
+            &.ico-text {
+                &:before {
+                    content: "\e911";
+                }
+            }
+
+            &.ico-color {
+                .pickColor {
+                    opacity: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 34px;
+                    height: 34px;
+                    cursor: pointer;
+                }
+
+                &:before {
+                    content: "\e900";
+                }
+            }
+
+            &.ico-width {
+                &:before {
+                    content: "\e908";
+                }
+
+                .widthSelector {
+                    font-size: 12px;
+                    text-align: right;
+                    cursor: default;
+                    position: absolute;
+                    bottom: 39px;
+                    left: 0;
+                    background-color: white;
+                    height: 0px;
+                    width: 40px;
+                    transition: height 0.2s ease-in;
+
+                    span {
+                        height: 0;
+                    }
+
+                    &.active {
+                        height: 125px;
+                        border-top: 1px solid $cGreenTool;
+
+                        span {
+                            transition: height 0.2s ease-in;
+                            display: block;
+                            border: 1px solid $cGreenTool;
+                            border-top: none;
+                            width: 38px;
+                            height: 17px;
+                            font-family: 'bgkiconsthick';
+                            position: relative;
+                            font-size: 18px;
+                            line-height: 17px;
+                            color: $cGreenTool;
+                            cursor: pointer;
+
+                            &:before {
+                                content: attr(data-icon);
+                            }
+
+                            &:hover {
+                                color: white;
+                                background-color: $cGreenTool;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.ico-send {
+                width: 111px;
+                border-right: 1px solid $cGreenTool;
+
+                span {
+                    position: absolute;
+                    top: 10px;
+                    font-size: 16px;
+                    line-height: 19px;
+                    font-family: $fLato;
+                }
+
+                &:before {
+                    content: "\e907";
+                }
+            }
+        }
+    }
+}
+
+.side-bar-detect {
+    position: fixed;
+    right: -80px;
+    border: 1px solid #45ca58;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    bottom: 25px;
+    width: 80px;
+    height: 38px;
+    background-color: rgba(255,255,255,1);
+
+    &.active {
+        right: -46px;
+        transition: right 0.5s ease-in-out;
+    }
+
+    &:hover {
+        right: 0;
+    }
+}
+
+.detect-button {
+    background-color: rgba(241,106,109,0.12);
+    width: 80px;
+    padding-right: 5px;
+    float: left;
+    height: 38px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    background: url(/images/detect-ico.png) 10px center no-repeat;
+    color: #45ca58;
+    border: 1px solid rgba(225,93,74,0.00);
+    margin: -1px;
+
+    &:hover {
+        background: url(/images/detect-ico-wt.png) 10px center no-repeat;
+        background-color: #45ca58;
+        color: #ffffff;
+        border: 1px solid #45ca58;
+        margin: -1px;
+    }
+
+    span {
+        float: left;
+        line-height: 1em;
+        padding-top: 7px;
+        padding-right: 0 !important;
+        margin-left: 34px;
+        font-size: 14px;
+    }
+}
+
+
+/*--------------Tools For Bugzkilla-------------------------------*/
+
+.active-tool {
+    background-color: $cGreenTool;
+    color: white !important;
+}
+
+/*------------------ MODAL PART -----------------*/
+
+.modalDialog {
+    position: fixed;
+    font-family: "Open Sans";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+
+    &:target {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.5s ease-in;
+    }
+
+    .modal-body {
+        width: 600px;
+        color: $cWhiteGray;
+        position: relative;
+        margin: 5% auto;
+        padding: 5px 20px 13px 20px;
+        background-color: #34495e;
+        cursor: auto;
+
+        .left-pnl {
+            width: 100%;
+            height: 50px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-image: url(/images/modal-title.png);
+            background-position: 10px 6px;
+            background-repeat: no-repeat;
+            text-align: left;
+        }
+
+        .inputs {
+            width: 100%;
+            border: none;
+            background-color: $cInputsColor;
+            line-height: 28px;
+            height: 30px;
+            margin: 5px 0;
+            font-family: $fLato;
+            text-indent: 8px;
+            border: none;
+
+            &.title {
+                height: 40px;
+            }
+
+            &.modal-val {
+                border: 1px solid red;
+            }
+
+            &__txt-box {
+                width: 100%;
+                height: 40px;
+                text-indent: 5px;
+                background-color: $cInputsColor;
+                border: none;
+
+                &--desc {
+                    padding: 0;
+                    resize: none;
+                    height: 100px;
+                    max-height: 100px;
+                    background-color: $cInputsColor;
+                }
+
+                &.modal-val {
+                    border: 1px solid red;
+                }
+            }
+        }
+
+        .slider-block {
+            position: relative;
+
+            .screenshotPreview {
+                border: 1px solid black;
+            }
+
+            .slideFrame {
+                overflow: hidden;
+                height: 140px;
+                width: 100%;
+                padding: 0;
+                max-height: 140px;
+                background-color: $cInputsColor;
+                border: none;
+
+                &.modal-val {
+                    border: 1px solid red;
+                }
+
+                .scrnSlider {
+                    margin: 0;
+                    padding: 0;
+                    height: 100%;
+
+                    figure {
+                        text-align: center;
+                        float: left;
+                        margin: 10px;
+                        padding: 0;
+                        height: 120px;
+                    }
+                }
+            }
+        }
+        /*.btn-slider {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            margin: 0;
+            position: absolute;
+            top: 50px;
+            cursor: pointer;
+
+            &.disabled {
+                //display: none;
+            }
+
+            &.prev {
+                left: 0;
+                border-width: 65px 20px 65px 0;
+                border-color: transparent #0b68c7 transparent transparent;
+            }
+
+            &.next {
+                right: 0;
+                border-width: 65px 0 65px 20px;
+                border-color: transparent transparent transparent #0b68c7;
+            }
+        }*/
+        .btnAddScrn {
+            font-family: "Open Sans";
+            font-size: 14px;
+            font-weight: 600;
+            float: right;
+            height: 35px;
+            width: 140px;
+            line-height: 15px;
+            background-color: $cAmethyst;
+            border: none;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.4s ease-in;
+
+            &:hover {
+                background-color: black;
+            }
+        }
+
+        .row {
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 20px;
+
+            &__col {
+                width: 33.33%;
+                float: left;
+                padding-right: 20px;
+                box-sizing: border-box;
+
+                &:nth-child(3) {
+                    padding-right: 0;
+                }
+            }
+
+            &.panel {
+                margin-top: 50px;
+            }
+        }
+
+        .btn-send {
+            font-family: "Open Sans";
+            font-size: 16px;
+            font-weight: 600;
+            width: 110px;
+            padding-left: 18px;
+            float: right;
+            height: 35px;
+            width: 130px;
+            cursor: pointer;
+            background: url(/images/send-button-wt.png) 10px center no-repeat;
+            color: white;
+            border: none;
+            background-color: $cGreenTool;
+            transition: background-color 0.4s ease-in;
+
+            &:hover {
+                background-color: black;
+            }
+        }
+
+        .btn-cancel {
+            font-family: "Open Sans";
+            font-size: 16px;
+            font-weight: 600;
+            width: 100px;
+            margin-right: 15px;
+            float: right;
+            height: 35px;
+            width: 130px;
+            cursor: pointer;
+            border: none;
+            line-height: 30px;
+            background-color: $cRed;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.4s ease-in;
+
+            &:hover {
+                background-color: black;
+            }
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+
+            input {
+                line-height: 40px;
+                width: 100%;
+                border-radius: 5px;
+                border: 1px solid darkgrey;
+                text-indent: 5px;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                margin: 0;
+                margin-top: 1px;
+                list-style: none;
+                width: 100%;
+                padding: 0;
+                display: none;
+                max-height: 150px;
+                overflow-y: scroll;
+
+                li {
+                    background-color: #fff;
+                    padding: 0px 5px;
+
+                    &:hover {
+                        background: #d6d4d4;
+                    }
+                }
+
+                &.active {
+                    display: block;
+
+                    a {
+                        line-height: 30px;
+                        width: 100%;
+                        text-decoration: none;
+                        color: #333333;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#loaderBugzkilla {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('/images/gears.svg') 50% 50% no-repeat;
+}
+
+.popupDialog {
+    cursor: auto;
+    position: fixed;
+    font-family: $fOpenSans;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+
+    &:target {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.5s ease-in;
+    }
+
+    .popup-body {
+        width: 250px;
+        position: relative;
+        margin: 20% auto;
+        padding: 5px 20px 13px 20px;
+        text-align: center;
+        background: #2980b9;
+
+        .inputs {
+            height: 30px;
+            border: none;
+        }
+
+        span {
+            line-height: 70px;
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+        }
+
+        .row {
+
+            &__popup {
+                padding: 20px 0;
+            }
+
+            &__btn-block {
+                opacity: 0;
+                transition: opacity 0.4s ease-in;
+
+                &.active {
+                    .btn-add {
+                        height: 41px;
+                        width: 103px;
+                        border: none;
+                        background-color: #34495e;
+                        margin: 0px 10px;
+                        font-family: $fOpenSans;
+                        font-weight: bold;
+                        color: white;
+
+                        &:hover {
+                            cursor: pointer;
+                            box-shadow: 0 0 10px 1px #405563;
+                        }
+                    }
+
+                    opacity: 1;
+                }
+            }
+        }
+
+        .ico-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: url(/images/close-ico-gray.png) 50% 50% no-repeat;
+            cursor: pointer;
+        }
+
+        .centered {
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+        }
+    }
+
+    .margined {
+        margin-top: 20px;
+    }
+}
+
+
+/*DRAWING*/
+
+.paper {
+    margin: 5px auto;
+    position: absolute;
+    background-color: transparent;
+    border: outset 1px #000000;
+    cursor: crosshair;
+    z-index: 20;
+}
+
+.redRectangle {
+    position: absolute;
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.45);
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.45);
+    background-color: transparent;
+    cursor: move;
+    box-sizing: content-box;
+}
+
+
+/* LITTLE SHIT ICON TRIANGLE*/
+
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url("http://code.jquery.com/ui/1.11.2/themes/smoothness/images/ui-icons_222222_256x240.png");
+}
+
+.redRectangle:hover > .bgkCloseTooltip {
+    background: url(/images/close-ico-gray.png) 50% 50% no-repeat;
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.figureScrn {
+    position: relative;
+
+    &:hover .bgkCloseTooltip {
+        background: url(/images/close-ico-gray.png) 50% 50% no-repeat;
+        background-color: rgba(255, 255, 255, 0.7);
+        position: absolute;
+        width: 21px;
+        height: 21px;
+        top: 1px;
+        right: 1px;
+        cursor: pointer;
+        padding: 2px;
+    }
+}
+/*tool area*/
+
+.redRectangle > textarea:focus {
+    outline: none;
+}
+
+#DivForTool {
+    display: block;
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 997;
+}
+
+#DivForTool_rectanglelayer {
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.bgk-figure {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.bgk-img {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    width: 100%;
+}
+/*pin area*/
+.bkg-pin {
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 50% 0;
+    background: #45ca58;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -20px 0 0 -20px;
+    text-align: center;
+
+    p {
+        margin: 0;
+        padding: 0;
+        transform: rotate(45deg);
+        text-decoration: none;
+        pointer-events: none;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        color: white;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.bkg-bounce_wrapper {
+    width: 20px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+}
+
+.bkg-bounce {
+    animation-name: bkg-bounce;
+    animation-fill-mode: both;
+    animation-duration: 1s;
+}
+
+.bkg-pulse {
+    background: #d6d4d4;
+    border-radius: 50%;
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: 11px 0px 0px -12px;
+    transform: rotateX(55deg);
+    z-index: -2;
+
+    &:after {
+        content: "";
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        margin: -13px 0 0 -13px;
+        animation: bkg-pulsate 1s ease-out;
+        animation-iteration-count: infinite;
+        opacity: 0;
+        box-shadow: 0 0 1px 2px #d6d4d4;
+        animation-delay: 1.1s;
+    }
+}
+
+@keyframes bkg-pulsate {
+    0% {
+        transform: scale(0.1, 0.1);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.2, 1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes bkg-bounce {
+    0% {
+        opacity: 0;
+        transform: translateY(-2000px) rotate(-45deg);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(30px) rotate(-45deg);
+    }
+
+    80% {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(-45deg);
+    }
+}
+
+.scrn-title {
+    float: left;
+}
+
+#myImgBack {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

@@ -1,0 +1,215 @@
+﻿
+$cBlue: #0fadda;
+$fLato: 'Lato', sans-serif;
+
+.sw-inp {
+    display: inline-block;
+    text-align: left;
+
+    input {
+        position: absolute;
+        left: -99999px;
+        opacity: 0;
+    }
+
+    label {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        font: 14px/16px $fLato;
+        color: #2d4658;
+
+        .ico-box {
+            margin-right: 10px;
+            margin-top: 1px;
+            display: inline-block;
+            transition: all 0.5s ease 0s;
+            vertical-align: top;
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    input[type="radio"] {
+        + label {
+            .ico-box {
+                display: inline-block;
+                background: #f8f8f8;
+                box-shadow: 0 0 0 1px #d9d9d9 inset;
+                border-radius: 50%;
+            }
+        }
+
+        &:checked + label {
+            .ico-box {
+                box-shadow: 0 0 0 5px $cBlue inset;
+                transition: all 0.2s ease 0s;
+            }
+        }
+    }
+
+    input[type="checkbox"] {
+        + label {
+            .ico-box {
+                display: inline-block;
+                background: #f8f8f8;
+                box-shadow: 0 0 0 1px #d9d9d9 inset;
+                border-radius: 3px;
+            }
+        }
+
+        &:checked + label {
+            .ico-box {
+                position: relative;
+                background: $cBlue;
+                box-shadow: 0 0 0 1px $cBlue inset;
+                transition: all 0.2s ease 0s;
+                text-align: center;
+
+                &:before {
+                    content: "\e903";
+                    color: #ffffff;
+                    font: normal 10px/16px 'icomoon';
+                    text-transform: none;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+.multi-select {
+    display: block;
+    position: relative;
+    width: 200px;
+
+    &.is_open {
+        .multi-select__select {
+            border-color: #32c1e9;
+        }
+
+        .multi-select__down {
+            display: block;
+        }
+
+        .multi-select__btn {
+            display: block;
+        }
+    }
+
+    &__select {
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        /*border-radius: 6px;*/
+        height: 100%;
+        cursor: pointer;
+        position: relative;
+        z-index: 100;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 10px;
+            bottom: 0;
+            margin: auto;
+            width: 0;
+            height: 0;
+            border: 4px solid transparent;
+            border-top-color: #3a414c;
+            border-bottom: none;
+        }
+    }
+
+    .sw-inp {
+        display: block;
+
+        input[type="checkbox"] + label {
+            display: block;
+            padding: 7px 10px 7px 35px;
+
+            .ico-box {
+                position: absolute;
+                left: 10px;
+            }
+        }
+    }
+
+    &__btn-holder {
+        border-bottom: 1px solid rgba(50, 193, 233, 0.5);
+        padding: 8px 0 1px;
+    }
+
+    &__down {
+        display: none;
+        background-color: #ffffff;
+        border: 1px solid #32c1e9;
+        box-sizing: border-box;
+        margin-top: -6px;
+        position: absolute;
+        width: 100%;
+        z-index: 90;
+    }
+
+    &__label {
+        display: block;
+        color: #4a4a4a;
+        font-size: 14px;
+        /*line-height: 38px;*/
+        margin-left: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: calc(100% - 30px);
+    }
+
+    &__list {
+        position: relative;
+        list-style: outside none none;
+        margin: 0;
+        max-height: 281px;
+        overflow-x: hidden;
+        padding: 0;
+        z-index: 80;
+
+        li {
+            display: block;
+            background-color: #ffffff;
+
+            &:hover {
+                background-color: #f0f0f0;
+                cursor: pointer;
+            }
+
+            &.selected {
+                background-color: #f0f0f0;
+            }
+        }
+    }
+
+    &__btn {
+        width: 90px;
+        background: #32c1e9;
+        border-radius: 0;
+        opacity: 0;
+        position: absolute;
+        right: -90px;
+        top: 0;
+        transition: all 0.3s ease 0s;
+        visibility: hidden;
+        z-index: 10;
+        height: 32px;
+        padding: 5px 25px;
+        display: none;
+
+        &.is_active {
+            visibility: visible;
+            transition: opacity 0.5s ease 0s, top 0.2s ease 0s;
+            opacity: 1;
+        }
+    }
+}
