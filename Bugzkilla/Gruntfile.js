@@ -73,8 +73,14 @@ module.exports = function (grunt) {
                 ]
             },
             dist: {
-                src: 'Dist/styles/style.css',
-                dest: 'Dist/styles/style.css'
+                files: [{
+                    src: 'Dist/styles/style.css',
+                    dest: 'Dist/styles/style.css'
+                },
+                 {
+                     src: 'Dist/styles/style.css',
+                     dest: 'ChromeExtension/css/style.css'
+                 }]
             }
         },
 
@@ -104,7 +110,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-newer");
 
     grunt.registerTask("default", ["newer:sass", "newer:concat_css", "newer:concat", "newer:postcss", "watch"]);
-    grunt.registerTask("all", ["sass", "concat_css", "concat", "postcss"]);
+    grunt.registerTask("all", ["sass", "concat_css", "concat_css_ext", "concat", "postcss"]);
     grunt.registerTask("dist", ["uglify", "cssmin"]);
 
 
