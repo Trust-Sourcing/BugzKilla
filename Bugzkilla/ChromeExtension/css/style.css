@@ -1089,7 +1089,8 @@ body {
   padding: 0;
   position: fixed;
   font-family: "Lato", sans-serif;
-  background-color: transparent; }
+  background-color: transparent;
+  overflow-y: auto; }
 
 @font-face {
   font-family: 'bgkicons';
