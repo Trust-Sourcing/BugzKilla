@@ -2,6 +2,14 @@
     margin-top: 50px;
     min-height: 100%;
     font: 14px/16px 'Lato', sans-serif;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+@media screen and (max-height: 700px) {
+    body {
+        overflow: auto;
+    }
 }
 
 /* Wrapping element */

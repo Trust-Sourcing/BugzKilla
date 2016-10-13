@@ -12,7 +12,7 @@ module.exports = function (grunt) {
             all: {
                 src: ['Dev/styles/vendor/*.css', 'Dist/styles/style.css'],
                 dest: 'Dist/styles/style.css'
-            },
+            }
         },
         concat: {
             scripts: {
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
                         'Dev/scripts/vendor/html2canvas_27_11.js',
                         'Dev/scripts/main.js'
                     ],
-                    'Dist/scripts/main_ext.js': [
+                    'ChromeExtenstion/js/main_ext.js': [
                         'Dev/scripts/vendor/jquery-1.10.2.js',
                         'Dev/scripts/vendor/jquery-ui.js',
                         'Dev/scripts/vendor/multiselect.js',

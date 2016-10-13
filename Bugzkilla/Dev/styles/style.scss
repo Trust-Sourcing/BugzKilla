@@ -1,6 +1,5 @@
 ﻿@import 'vendor/jquery-ui';
 @import 'vendor/multiselect.scss';
-@import 'assets/ui';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
 /*constants*/
 $cGreenTool: #2dcc70;
@@ -11,6 +10,20 @@ $cWhiteGray: #e6e6e6;
 $cAmethyst: #9b59b6;
 $cInputsColor: #f4f4f4;
 $fOpenSans: 'Open Sans';
+
+body {   
+    min-height: 100%;
+    font: $fLato;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+@media screen and (max-height: 700px) {
+    body {
+        overflow: auto;
+    }
+}
+
 
 @font-face {
     font-family: 'bgkicons';
@@ -860,4 +873,6 @@ $fOpenSans: 'Open Sans';
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
 }
