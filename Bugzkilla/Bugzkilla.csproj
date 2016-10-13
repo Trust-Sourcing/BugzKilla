@@ -448,7 +448,7 @@
     <Content Include="package.json" />
     <Content Include="Dist\styles\style.css.map" />
     <Content Include="Dev\styles\vendor\multiselect.scss" />
-    <None Include="Properties\PublishProfiles\Bugz PUBLISH.pubxml" />
+    <None Include="Properties\PublishProfiles\BugzPUBLISH.pubxml" />
     <Content Include="Dev\scripts\vendor\jquery-1.10.2.js" />
     <Content Include="Dev\scripts\vendor\modernizr.js" />
     <Content Include="Web.config">

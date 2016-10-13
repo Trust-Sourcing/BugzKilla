@@ -499,7 +499,6 @@
 
             init: function () {
                 var self = this;
-                $('#bgk-body').height($(parent.window).height());
                 self.bindEvents();
                 self.initSlider();
             },
