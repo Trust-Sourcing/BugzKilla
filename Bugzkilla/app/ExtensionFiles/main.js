@@ -144,6 +144,7 @@
                 }).success(function (response) {
                     if (response.ListOfTags !== null) {
                         var content = '';
+                        $(self.listOfTags).clear();
                         $.each(response.ListOfTags, function (key, el) {
                             content += '<li><div class="sw-inp "><input type="checkbox" autocomplete="off" value="' + el.Name + '" id="tag-' + el.Id + '" class="js-category"> ' +
                                        '<label for="tag-' + el.Id + '"><span class="ico-box"></span>' + el.Name + '</label></div></li>';
