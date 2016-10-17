@@ -1306,32 +1306,7 @@ body {
     margin: 5% auto;
     padding: 5px 20px 13px 20px;
     background-color: #34495e;
-    cursor: auto;
-        /*.btn-slider {
-            width: 0;
-            height: 0;
-            border-style: solid;
-            margin: 0;
-            position: absolute;
-            top: 50px;
-            cursor: pointer;
-
-            &.disabled {
-                //display: none;
-            }
-
-            &.prev {
-                left: 0;
-                border-width: 65px 20px 65px 0;
-                border-color: transparent #0b68c7 transparent transparent;
-            }
-
-            &.next {
-                right: 0;
-                border-width: 65px 0 65px 20px;
-                border-color: transparent transparent transparent #0b68c7;
-            }
-        }*/ }
+    cursor: auto; }
     .modalDialog .modal-body .left-pnl {
       width: 100%;
       height: 50px;
@@ -1394,6 +1369,26 @@ body {
             margin: 10px;
             padding: 0;
             height: 120px; }
+    .modalDialog .modal-body .btn-slider {
+      margin: 0;
+      position: absolute;
+      top: 90px;
+      cursor: pointer;
+      width: 40px;
+      height: 70px;
+      opacity: 0.5;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; }
+      .modalDialog .modal-body .btn-slider:hover {
+        opacity: 0.9;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)"; }
+      .modalDialog .modal-body .btn-slider.disabled {
+        display: none; }
+      .modalDialog .modal-body .btn-slider.prev {
+        left: 0;
+        background: url("/Images/btn-prev.png") center center no-repeat; }
+      .modalDialog .modal-body .btn-slider.next {
+        right: 0;
+        background: url("/Images/btn-next.png") center center no-repeat; }
     .modalDialog .modal-body .btnAddScrn {
       font-family: "Open Sans";
       font-size: 14px;
@@ -1552,8 +1547,8 @@ body {
         opacity: 1;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
         .popupDialog .popup-body .row__btn-block.active .btn-add {
-          height: 41px;
-          width: 103px;
+          height: 40px;
+          width: 100px;
           border: none;
           background-color: #34495e;
           margin: 0px 10px;

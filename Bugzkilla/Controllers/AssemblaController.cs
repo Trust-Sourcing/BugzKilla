@@ -129,7 +129,7 @@ namespace Bugzkilla.Controllers
 
             var token = (string)Session["Token"];
 
-            var uri = spaceId + AssemblaUriHelper.TicketsUrl;
+            var uri = spaceId + AssemblaUriHelper.TicketsUrl + "?report=1&per_page=100&sort_by=created_on";
 
             var tikets = await AssemblaHelper.GetRequest(uri, token);
             var model = JsonConvert.DeserializeObject<List<Ticket>>(tikets);

@@ -532,8 +532,7 @@
                 $(self.sideBarToolDetect).hide();
                 $(self.pin).hide();
 
-                html2canvas($('#bgk-body')).then(function (canvas) {
-
+                html2canvas($('body')).then(function (canvas) {
                     helpers.turnOffLoader();
                     helpers.createDivForTool();
                     var img = canvas.toDataURL('image/png', 1);

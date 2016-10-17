@@ -394,31 +394,35 @@ body {
                 }
             }
         }
-        /*.btn-slider {
-            width: 0;
-            height: 0;
-            border-style: solid;
+
+        .btn-slider {
             margin: 0;
             position: absolute;
-            top: 50px;
+            top: 90px;
             cursor: pointer;
+            width: 40px;
+            height: 70px;
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 0.9;
+            }
 
             &.disabled {
-                //display: none;
+                display: none;
             }
 
             &.prev {
                 left: 0;
-                border-width: 65px 20px 65px 0;
-                border-color: transparent #0b68c7 transparent transparent;
+                background: url('/Images/btn-prev.png') center center no-repeat;
             }
 
             &.next {
                 right: 0;
-                border-width: 65px 0 65px 20px;
-                border-color: transparent transparent transparent #0b68c7;
+                background: url('/Images/btn-next.png') center center no-repeat;
             }
-        }*/
+        }
+
         .btnAddScrn {
             font-family: "Open Sans";
             font-size: 14px;
@@ -615,8 +619,8 @@ body {
 
                 &.active {
                     .btn-add {
-                        height: 41px;
-                        width: 103px;
+                        height: 40px;
+                        width: 100px;
                         border: none;
                         background-color: #34495e;
                         margin: 0px 10px;
